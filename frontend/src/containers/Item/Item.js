@@ -22,7 +22,9 @@ class Item extends Component {
             <div>
                 <h3 className="mb-3">{item.title}</h3>
 
-                {item.image && <img src={`${apiURL}/uploads/${item.image}`} className="item-img" alt={item.title}/>}
+                {item.image && (
+                    <img src={`${apiURL}/uploads/${item.image}`} className="item-img" alt={item.title}/>
+                )}
 
                 <p><span className="text-muted">Category:</span> {category}</p>
 

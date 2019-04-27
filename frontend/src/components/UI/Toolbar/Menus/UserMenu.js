@@ -1,22 +1,20 @@
 import React from 'react';
-import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
+import {Nav, NavItem, NavLink} from "reactstrap";
+import {NavLink as RouterNavLink} from "react-router-dom";
 
 const UserMenu = ({user, logout}) => {
     return (
-        <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-                Hello, {user.fullname}
-            </DropdownToggle>
-            <DropdownMenu right>
-                <DropdownItem>
-                    Show profile
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem onClick={logout}>
-                    Logout
-                </DropdownItem>
-            </DropdownMenu>
-        </UncontrolledDropdown>
+        <Nav>
+            <NavItem>
+                <span className="nav-link">Hello, {user.fullname}</span>
+            </NavItem>
+            <NavItem>
+                <NavLink tag={RouterNavLink} to="/items/new">Add new item</NavLink>
+            </NavItem>
+            <NavItem>
+                <span className="nav-link" onClick={logout}>Logout</span>
+            </NavItem>
+        </Nav>
     );
 };
 
