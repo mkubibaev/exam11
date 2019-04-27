@@ -1,5 +1,7 @@
 const express = require('express');
 
+const auth = require('../middlewares/auth');
+const upload = require('../middlewares/upload');
 const Item = require('../models/Item');
 
 const router = express.Router();
@@ -29,6 +31,24 @@ router.get('/:id', async (req, res) => {
             .populate('category', 'title');
 
         return res.send(item)
+    } catch (e) {
+        return res.status(400).send(e);
+    }
+});
+
+router.post('/', [auth, upload.single('image')], async (req, res) => {
+    const itemData = req.body;
+    itemData.user = req.user._id;
+
+    if (req.file) {
+        itemData.image = req.file.filename;
+    }
+
+    try {
+        const item = new Item(itemData);
+
+        await item.save();
+        return res.send({message: 'Item added!', item});
     } catch (e) {
         return res.status(400).send(e);
     }
