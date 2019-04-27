@@ -6,9 +6,16 @@ import {fetchItems} from "../../store/actions/itemsActions";
 import Item from "../../components/Item/Item";
 
 class Items extends Component {
+
     componentDidMount() {
-        this.props.fetchItems();
+        this.props.fetchItems(this.props.match.params.id);
     }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.props.fetchItems(this.props.match.params.id);
+        }
+    };
 
     render() {
         return (
@@ -34,7 +41,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchItems: () => dispatch(fetchItems())
+    fetchItems: categoryId => dispatch(fetchItems(categoryId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Items);

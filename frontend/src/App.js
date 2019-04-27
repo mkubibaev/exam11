@@ -35,6 +35,7 @@ class App extends Component {
                         <Col xs="12" md="9">
                             <Switch>
                                 <Route path="/" exact component={Items}/>
+                                <Route path="/categories/:id" component={Items}/>
                                 <Route path="/login" component={Login}/>
                                 <Route path="/register" component={Register}/>
                             </Switch>

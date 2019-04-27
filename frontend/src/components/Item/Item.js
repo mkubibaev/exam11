@@ -7,7 +7,7 @@ import {apiURL} from "../../constants";
 const Item = props => {
     return (
         <Col xs="12" sm="6" md="4">
-            <Card>
+            <Card className="mb-3">
                 {props.image
                     ? <RouterNavLink to={`/items/${props.id}`}>
                         <CardImg top width="100%" src={`${apiURL}/uploads/${props.image}`} alt={props.title}/>

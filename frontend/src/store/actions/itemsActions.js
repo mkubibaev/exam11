@@ -6,12 +6,16 @@ const fetchDataFailure = error => ({type: FETCH_DATA_FAILURE, error});
 
 const fetchItemsSuccess = items => ({type: FETCH_ITEMS_SUCCESS, items});
 
-export const fetchItems = () => {
+export const fetchItems = categoryId => {
     return async dispatch => {
+        let url = '/items';
+
+        if (categoryId) url += `?category=${categoryId}`;
+
         dispatch(fetchDataRequest());
 
         try {
-            const response = await axios.get('/items');
+            const response = await axios.get(url);
             dispatch(fetchItemsSuccess(response.data));
         } catch (e) {
             dispatch(fetchDataFailure(e));
