@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Row} from "reactstrap";
 
 import {fetchItems} from "../../store/actions/itemsActions";
-import Item from "../../components/Item/Item";
+import ListItem from "../../components/ListItem/ListItem";
 
 class Items extends Component {
 
@@ -21,7 +21,7 @@ class Items extends Component {
         return (
             <Row>
                 {this.props.items.map(item => (
-                    <Item
+                    <ListItem
                         key={item._id}
                         id={item._id}
                         title={item.title}

@@ -8,9 +8,10 @@ import {logoutUser} from "./store/actions/usersActions";
 import {fetchCategories} from "./store/actions/categoriesActions";
 import Toolbar from "./components/UI/Toolbar/Toolbar";
 import Sidebar from "./components/UI/Sidebar/Sidebar";
-import Items from "./containers/Items/Items";
 import Register from "./containers/Register/Register";
 import Login from "./containers/Login/Login";
+import Items from "./containers/Items/Items";
+import Item from "./containers/Item/Item";
 
 class App extends Component {
     componentDidMount() {
@@ -36,6 +37,7 @@ class App extends Component {
                             <Switch>
                                 <Route path="/" exact component={Items}/>
                                 <Route path="/categories/:id" component={Items}/>
+                                <Route path="/items/:id" component={Item}/>
                                 <Route path="/login" component={Login}/>
                                 <Route path="/register" component={Register}/>
                             </Switch>
