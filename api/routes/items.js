@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
             .populate('user', ['fullname', 'phone'])
             .populate('category', 'title');
 
-        return res.send(item)
+        return res.send(item);
     } catch (e) {
         return res.status(400).send(e);
     }
@@ -51,6 +51,22 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
         return res.send({message: 'Item added!', item});
     } catch (e) {
         return res.status(400).send(e);
+    }
+});
+
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        const item = await Item.findById(req.params.id);
+
+        if (item.user === req.user._id) {
+            await Item.deleteOne({_id: req.params.id});
+
+            return res.status(200).send('Item deleted!');
+        } else {
+            return res.status(403).send('Access forbidden!');
+        }
+    } catch (error) {
+        return res.status(400).send(error);
     }
 });
 
