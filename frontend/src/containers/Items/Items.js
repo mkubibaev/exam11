@@ -4,6 +4,7 @@ import {Row} from "reactstrap";
 
 import {fetchItems} from "../../store/actions/itemsActions";
 import ListItem from "../../components/ListItem/ListItem";
+import Loader from "../../components/UI/Loader/Loader";
 
 class Items extends Component {
 
@@ -20,6 +21,8 @@ class Items extends Component {
     render() {
         return (
             <Row>
+                {this.props.loading && <Loader/>}
+
                 {this.props.items.map(item => (
                     <ListItem
                         key={item._id}

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {Button} from "reactstrap";
 
 import {deleteItem, fetchItem} from "../../store/actions/itemsActions";
 import {apiURL} from "../../constants";
-import {Button} from "reactstrap";
+import Loader from "../../components/UI/Loader/Loader";
 
 class Item extends Component {
     componentDidMount() {
@@ -22,6 +23,8 @@ class Item extends Component {
 
         return (
             <div>
+                {this.props.loading && <Loader/>}
+
                 <h3 className="mb-3">{item.title}</h3>
 
                 {item.image && (
