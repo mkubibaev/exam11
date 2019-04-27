@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: true,
+        required: 'Username is required!',
         unique: true,
         validate: {
             validator: async function(value) {
@@ -23,15 +23,15 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
+        required: 'Password is required!'
     },
     fullname: {
         type: String,
-        required: true
+        required: 'Full name is required!'
     },
     phone: {
         type: String,
-        required: true,
+        required: 'Phone is required!',
     },
     token: {
         type: String,

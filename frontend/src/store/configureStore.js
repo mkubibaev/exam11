@@ -5,13 +5,15 @@ import {connectRouter, routerMiddleware} from "connected-react-router";
 
 import {saveToLocalStorage, loadFromLocalStorage} from "./localStorage";
 import usersReducer from '../store/reducers/usersReducer';
+import categoriesReducer from '../store/reducers/categoriesReducer';
 
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     router: connectRouter(history),
-    users: usersReducer
+    users: usersReducer,
+    categories: categoriesReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

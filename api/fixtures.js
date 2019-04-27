@@ -23,8 +23,7 @@ const run = async () => {
     const categories = await Category.create(
         {title: 'Cars'},
         {title: 'Electronics'},
-        {title: 'Sport'},
-        {title: 'Other'}
+        {title: 'Sport'}
     );
 
     await Item.create(
