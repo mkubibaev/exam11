@@ -39,7 +39,7 @@ const run = async () => {
         {
             user: users[0]._id,
             category: categories[1]._id,
-            title: 'NW - 058 Dual Track Microphone',
+            title: 'Dual Track Microphone',
             description: 'It is really good, fisrt looks really nice, I think its pretty good that the microphone is small, the price is absolutely fine, it sounds good just do not put your mouth too close.',
             image: 'micro.jpg',
             price: 80,

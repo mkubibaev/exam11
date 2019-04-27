@@ -8,7 +8,7 @@ import {logoutUser} from "./store/actions/usersActions";
 import {fetchCategories} from "./store/actions/categoriesActions";
 import Toolbar from "./components/UI/Toolbar/Toolbar";
 import Sidebar from "./components/UI/Sidebar/Sidebar";
-import Home from "./containers/Home/Home";
+import Items from "./containers/Items/Items";
 import Register from "./containers/Register/Register";
 import Login from "./containers/Login/Login";
 
@@ -27,16 +27,16 @@ class App extends Component {
                         logout={this.props.logoutUser}
                     />
                 </header>
-                <Container className="py-4">
+                <Container className="py-5">
                     <Row>
                         <Col xs="12" md="3">
                             <Sidebar categories={this.props.categories}/>
                         </Col>
                         <Col xs="12" md="9">
                             <Switch>
-                                <Route path="/" exact component={Home}/>
-                                <Route path="/register" component={Register}/>
+                                <Route path="/" exact component={Items}/>
                                 <Route path="/login" component={Login}/>
+                                <Route path="/register" component={Register}/>
                             </Switch>
                         </Col>
                     </Row>
