@@ -57,13 +57,13 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
 router.delete('/:id', auth, async (req, res) => {
     try {
         const item = await Item.findById(req.params.id);
+        console.log(item);
+        if (item.user.equals(req.user._id)) {
+            await item.remove()
 
-        if (item.user === req.user._id) {
-            await Item.deleteOne({_id: req.params.id});
-
-            return res.status(200).send('Item deleted!');
+            return res.status(200).send({message: 'Item deleted!'});
         } else {
-            return res.status(403).send('Access forbidden!');
+            return res.status(403).send({message: 'Access forbidden!'});
         }
     } catch (error) {
         return res.status(400).send(error);

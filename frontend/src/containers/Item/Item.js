@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 
-import {fetchItem} from "../../store/actions/itemsActions";
+import {deleteItem, fetchItem} from "../../store/actions/itemsActions";
 import {apiURL} from "../../constants";
+import {Button} from "reactstrap";
 
 class Item extends Component {
     componentDidMount() {
@@ -15,6 +16,7 @@ class Item extends Component {
         //вопрос на вебинар ) , как лучше выводить ?
         //при первом выводе компонента, не может найти значение ключа если этот ключ объект
         const category = item.category && item.category.title;
+        const sellerId = item.user && item.user._id;
         const sellerName = item.user && item.user.fullname;
         const sellerPhone = item.user && item.user.phone;
 
@@ -40,6 +42,17 @@ class Item extends Component {
                     <li><span className="text-muted">Seller:</span> {sellerName}</li>
                     <li><span className="text-muted">Seller phone:</span> {sellerPhone}</li>
                 </ul>
+
+                {sellerId === this.props.user._id
+                    ? <Button
+                        outline
+                        color="danger"
+                        size="sm"
+                        className="mb-3"
+                        onClick={() => this.props.deleteItem(this.props.match.params.id)}
+                      >Delete item</Button>
+                    : null
+                }
             </div>
         );
     }
@@ -47,12 +60,14 @@ class Item extends Component {
 
 const mapStateToProps = state => ({
     item: state.items.item,
+    user: state.users.user,
     error: state.items.error,
     loading: state.items.loading
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchItem: itemId => dispatch(fetchItem(itemId))
+    fetchItem: itemId => dispatch(fetchItem(itemId)),
+    deleteItem: itemId => dispatch(deleteItem(itemId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
