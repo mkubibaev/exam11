@@ -3,7 +3,7 @@ import {push} from 'connected-react-router';
 import {NotificationManager} from 'react-notifications';
 import {
     LOGIN_USER_FAILURE,
-    LOGIN_USER_SUCCESS, LOGOUT_USER_FAILURE,
+    LOGIN_USER_SUCCESS,
     LOGOUT_USER_SUCCESS,
     REGISTER_USER_FAILURE,
     REGISTER_USER_SUCCESS
@@ -16,7 +16,6 @@ const loginUserSuccess = user => ({type: LOGIN_USER_SUCCESS, user});
 const loginUserFailure = error => ({type: LOGIN_USER_FAILURE, error});
 
 const logoutUserSuccess = () => ({type: LOGOUT_USER_SUCCESS});
-const logoutUserFailure = error => ({type: LOGOUT_USER_FAILURE, error});
 
 export const registerUser = userData => {
     return async dispatch => {

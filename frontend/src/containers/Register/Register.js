@@ -9,6 +9,7 @@ import FormElement from "../../components/UI/Form/FormElement";
 class Register extends Component {
     state = {
         fullname: '',
+        phone: '',
         username: '',
         password: '',
     };
@@ -53,6 +54,17 @@ class Register extends Component {
                             placeholder="Your full name"
                             autoComplete="new-fullname"
                         />
+
+                        <FormElement
+                            propertyName="phone"
+                            type="text"
+                            value={this.state.phone}
+                            onChange={this.inputChangeHandler}
+                            error={this.getFieldHasError('phone')}
+                            placeholder="Your phone number"
+                            autoComplete="new-phone"
+                        />
+
                         <FormElement
                             propertyName="username"
                             type="text"
