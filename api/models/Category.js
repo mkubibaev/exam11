@@ -8,3 +8,7 @@ const CategorySchema = new Schema({
         required: 'Category title is required!'
     }
 });
+
+const Category = mongoose.model('Category', CategorySchema);
+
+module.exports = Category;
